@@ -1,5 +1,6 @@
 package nl.novi.homework.techiteasy.controller;
 
+import nl.novi.homework.techiteasy.exception.NameTooLongException;
 import nl.novi.homework.techiteasy.exception.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,5 +14,8 @@ public class ExceptionController {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-
+    @ExceptionHandler(value = NameTooLongException.class)
+    public ResponseEntity<String> exception(NameTooLongException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

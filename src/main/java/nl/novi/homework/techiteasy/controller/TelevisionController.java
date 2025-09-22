@@ -1,5 +1,7 @@
 package nl.novi.homework.techiteasy.controller;
 
+import nl.novi.homework.techiteasy.exception.NameTooLongException;
+import nl.novi.homework.techiteasy.exception.RecordNotFoundException;
 import nl.novi.homework.techiteasy.model.Television;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,12 @@ public class TelevisionController {
 
     @PostMapping
     public ResponseEntity<Television> createTelevision(@RequestBody Television television){
-        this.televisionMap.put(television.getId(), television);
-        return new ResponseEntity<>(television, HttpStatus.CREATED);
+        if(television.getName().length() <= 20) {
+            this.televisionMap.put(television.getId(), television);
+            return new ResponseEntity<>(television, HttpStatus.CREATED);
+        } else {
+            throw new NameTooLongException("Name is too long!");
+        }
     }
 
     @GetMapping
@@ -31,7 +37,7 @@ public class TelevisionController {
         if (this.televisionMap.containsKey(id)) {
             return ResponseEntity.ok(this.televisionMap.get(id));
         } else {
-            return ResponseEntity.notFound().build();
+            throw new RecordNotFoundException("ID cannot be found");
         }
     }
 
