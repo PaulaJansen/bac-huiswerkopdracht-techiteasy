@@ -1,9 +1,8 @@
 package nl.novi.homework.techiteasy.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "televisions")
@@ -12,14 +11,15 @@ public class Television {
     @Id
     @GeneratedValue
     private long id;
-
     private String type;
     private String brand;
     private String name;
     private double price;
     private double availableSize;
     private int refreshRate;
-    private String screenType;
+
+    @Enumerated(EnumType.STRING)
+    private ScreenType screenType;
     private String screenQuality;
     private boolean smartTv;
     private boolean wifi;
@@ -29,10 +29,11 @@ public class Television {
     private boolean ambiLight;
     private int originalStock;
     private int sold;
+    private LocalDate releaseDate;
 
     public Television(){}
 
-    public Television(long id, String type, String brand, String name, double price, double availableSize, int refreshRate, String screenType, String screenQuality, boolean smartTv, boolean wifi, boolean voiceControl, boolean hdr, boolean bluetooth, boolean ambiLight, int originalStock, int sold) {
+    public Television(long id, String type, String brand, String name, double price, double availableSize, int refreshRate, ScreenType screenType, String screenQuality, boolean smartTv, boolean wifi, boolean voiceControl, boolean hdr, boolean bluetooth, boolean ambiLight, int originalStock, int sold, LocalDate releaseDate) {
         this.id = id;
         this.type = type;
         this.brand = brand;
@@ -50,6 +51,7 @@ public class Television {
         this.ambiLight = ambiLight;
         this.originalStock = originalStock;
         this.sold = sold;
+        this.releaseDate = releaseDate;
     }
 
     public long getId() {
@@ -108,11 +110,11 @@ public class Television {
         this.refreshRate = refreshRate;
     }
 
-    public String getScreenType() {
+    public ScreenType getScreenType() {
         return screenType;
     }
 
-    public void setScreenType(String screenType) {
+    public void setScreenType(ScreenType screenType) {
         this.screenType = screenType;
     }
 
@@ -186,5 +188,13 @@ public class Television {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }
