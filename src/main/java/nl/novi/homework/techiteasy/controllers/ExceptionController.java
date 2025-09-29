@@ -1,7 +1,7 @@
-package nl.novi.homework.techiteasy.controller;
+package nl.novi.homework.techiteasy.controllers;
 
-import nl.novi.homework.techiteasy.exception.NameTooLongException;
-import nl.novi.homework.techiteasy.exception.RecordNotFoundException;
+import nl.novi.homework.techiteasy.exceptions.NameTooLongException;
+import nl.novi.homework.techiteasy.exceptions.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

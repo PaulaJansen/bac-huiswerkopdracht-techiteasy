@@ -1,4 +1,4 @@
-package nl.novi.homework.techiteasy.exception;
+package nl.novi.homework.techiteasy.exceptions;
 
 public class RecordNotFoundException extends RuntimeException {
     public RecordNotFoundException() {
