@@ -22,5 +22,4 @@ public class TelevisionDto {
     public boolean ambiLight;
     public LocalDate releaseDate;
     public int stock;
-
 }

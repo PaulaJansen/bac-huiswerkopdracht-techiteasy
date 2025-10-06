@@ -3,6 +3,7 @@ package nl.novi.homework.techiteasy.services;
 import jakarta.persistence.EntityNotFoundException;
 import nl.novi.homework.techiteasy.Dtos.TelevisionDto;
 import nl.novi.homework.techiteasy.Dtos.TelevisionInputDto;
+import nl.novi.homework.techiteasy.Dtos.TelevisionSalesDto;
 import nl.novi.homework.techiteasy.exceptions.RecordNotFoundException;
 import nl.novi.homework.techiteasy.mappers.TelevisionMapper;
 import nl.novi.homework.techiteasy.models.Television;
@@ -26,6 +27,14 @@ public class TelevisionService {
 
     public List<TelevisionDto> getAllTelevisions() {
         return TelevisionMapper.toDtoList(televisionRepository.findAll());
+    }
+
+    public TelevisionSalesDto getSalesInformation(long id) {
+        return TelevisionMapper.toSalesDto(televisionRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Television " + id + " not found")));
+    }
+
+    public List<TelevisionSalesDto> getSalesInformationAllTelevisions() {
+        return TelevisionMapper.toSalesDtoList(televisionRepository.findAll());
     }
 
     public TelevisionDto createTelevision(TelevisionInputDto televisionInputDto) {

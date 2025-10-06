@@ -2,6 +2,7 @@ package nl.novi.homework.techiteasy.mappers;
 
 import nl.novi.homework.techiteasy.Dtos.TelevisionDto;
 import nl.novi.homework.techiteasy.Dtos.TelevisionInputDto;
+import nl.novi.homework.techiteasy.Dtos.TelevisionSalesDto;
 import nl.novi.homework.techiteasy.models.Television;
 
 import java.util.List;
@@ -32,6 +33,19 @@ public class TelevisionMapper {
 
     public static List<TelevisionDto> toDtoList(List<Television> televisions) {
         return televisions.stream().map(TelevisionMapper::toDto).toList();
+    }
+
+    public static TelevisionSalesDto toSalesDto(Television television) {
+        TelevisionSalesDto televisionSalesDto = new TelevisionSalesDto();
+        televisionSalesDto.id = television.getId();
+        televisionSalesDto.price = television.getPrice();
+        televisionSalesDto.originalStock = television.getOriginalStock();
+        televisionSalesDto.sold = television.getSold();
+        return televisionSalesDto;
+    }
+
+    public static List<TelevisionSalesDto> toSalesDtoList(List<Television> televisions) {
+        return televisions.stream().map(TelevisionMapper::toSalesDto).toList();
     }
 
     public static Television toEntity(TelevisionInputDto televisionInputDto) {
