@@ -60,9 +60,9 @@ public class TelevisionController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<TelevisionDto> deleteTelevision(@PathVariable long id) {
-        TelevisionDto televisionDto = televisionService.deleteTelevision(id);
-        return ResponseEntity.ok(televisionDto);
+    public ResponseEntity<String> deleteTelevision(@PathVariable long id) {
+        String message = televisionService.deleteTelevision(id);
+        return ResponseEntity.ok(message);
     }
 }
 

@@ -55,11 +55,8 @@ public class TelevisionService {
         return TelevisionMapper.toDto(updatedTelevision);
     }
 
-    public TelevisionDto deleteTelevision(long id) {
+    public String deleteTelevision(long id) {
         Television existingTelevision = televisionRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Television " + id + " not found"));
-
-        TelevisionDto deletedTelevision = TelevisionMapper.toDto(existingTelevision);
-        televisionRepository.deleteById(id);
-        return deletedTelevision;
+        return ("Television with id " + id + " has been deleted");
     }
 }
