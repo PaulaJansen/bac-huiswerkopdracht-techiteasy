@@ -29,4 +29,7 @@ public class TelevisionInputDto {
     public boolean ambiLight;
     public int originalStock;
     public LocalDate releaseDate;
+
+    public CIModuleInputDto ciModuleInputDto;
+    public RemoteControllerInputDto remoteControllerInputDto;
 }

@@ -3,6 +3,7 @@ package nl.novi.homework.techiteasy.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "televisions")
@@ -11,6 +12,23 @@ public class Television {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToOne
+    @JoinColumn(name = "remotecontrollers")
+    RemoteController remoteController;
+
+    @ManyToOne
+    @JoinColumn(name = "cimodule_id")
+    CIModule ciModule;
+
+    @ManyToMany
+    @JoinTable(
+            name = "televisions_wallbrackets",
+            joinColumns  = @JoinColumn(name = "television_id"),
+            inverseJoinColumns = @JoinColumn(name = "wallbracket_id")
+    )
+    List<WallBracket> wallBrackets;
+
     private String type;
     private String brand;
     private String name;
@@ -30,29 +48,6 @@ public class Television {
     private int originalStock;
     private int sold;
     private LocalDate releaseDate;
-
-    public Television(){}
-
-    public Television(long id, String type, String brand, String name, double price, double availableSize, int refreshRate, ScreenType screenType, String screenQuality, boolean smartTv, boolean wifi, boolean voiceControl, boolean hdr, boolean bluetooth, boolean ambiLight, int originalStock, int sold, LocalDate releaseDate) {
-        this.id = id;
-        this.type = type;
-        this.brand = brand;
-        this.name = name;
-        this.price = price;
-        this.availableSize = availableSize;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambiLight = ambiLight;
-        this.originalStock = originalStock;
-        this.sold = sold;
-        this.releaseDate = releaseDate;
-    }
 
     public long getId() {
         return id;
@@ -196,5 +191,29 @@ public class Television {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
+    }
+
+    public CIModule getCiModule() {
+        return ciModule;
+    }
+
+    public void setCiModule(CIModule ciModule) {
+        this.ciModule = ciModule;
+    }
+
+    public List<WallBracket> getWallBrackets() {
+        return wallBrackets;
+    }
+
+    public void setWallBrackets(List<WallBracket> wallBrackets) {
+        this.wallBrackets = wallBrackets;
     }
 }

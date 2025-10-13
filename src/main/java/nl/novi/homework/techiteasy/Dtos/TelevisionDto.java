@@ -1,6 +1,9 @@
 package nl.novi.homework.techiteasy.Dtos;
 
+import nl.novi.homework.techiteasy.models.CIModule;
+import nl.novi.homework.techiteasy.models.RemoteController;
 import nl.novi.homework.techiteasy.models.ScreenType;
+import nl.novi.homework.techiteasy.models.WallBracket;
 
 import java.time.LocalDate;
 
@@ -22,4 +25,7 @@ public class TelevisionDto {
     public boolean ambiLight;
     public LocalDate releaseDate;
     public int stock;
+
+    public CIModuleDto ciModuleDto;
+    public RemoteControllerDto remoteControllerDto;
 }
