@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 public class CIModuleInputDto {
 
     @NotBlank
-    private String name;
+    public String name;
 
     @NotBlank
-    private String type;
-    private double price;
+    public String type;
+    public double price;
 }

@@ -57,6 +57,7 @@ public class TelevisionService {
 
     public String deleteTelevision(long id) {
         Television existingTelevision = televisionRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Television " + id + " not found"));
+        televisionRepository.delete(existingTelevision);
         return ("Television with id " + id + " has been deleted");
     }
 }

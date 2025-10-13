@@ -3,14 +3,14 @@ package nl.novi.homework.techiteasy.Dtos;
 import jakarta.validation.constraints.NotBlank;
 
 public class RemoteControllerInputDto {
-    private String compatibleWith;
-    private String batteryType;
+    public String compatibleWith;
+    public String batteryType;
 
     @NotBlank
-    private String name;
+    public String name;
 
     @NotBlank
-    private String brand;
-    private double price;
-    private int originalStock;
+    public String brand;
+    public double price;
+    public int originalStock;
 }
