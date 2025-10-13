@@ -9,6 +9,10 @@ public class RemoteController {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToOne(mappedBy = "remoteController")
+    Television television;
+
     private String compatibleWith;
     private String batteryType;
     private String name;
@@ -70,5 +74,13 @@ public class RemoteController {
 
     public void setOriginalStock(int originalStock) {
         this.originalStock = originalStock;
+    }
+
+    public Television getTelevision() {
+        return television;
+    }
+
+    public void setTelevision(Television television) {
+        this.television = television;
     }
 }

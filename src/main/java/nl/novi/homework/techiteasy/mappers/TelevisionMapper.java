@@ -28,6 +28,15 @@ public class TelevisionMapper {
         televisionDto.ambiLight = television.isAmbiLight();
         televisionDto.releaseDate = television.getReleaseDate();
         televisionDto.stock = (television.getOriginalStock() - television.getSold());
+
+        if (television.getCiModule() != null) {
+            televisionDto.ciModuleDto = CIModuleMapper.toDto(television.getCiModule());
+        }
+
+        if (television.getRemoteController() != null) {
+            televisionDto.remoteControllerDto = RemoteControllerMapper.toDto(television.getRemoteController());
+        }
+
         return televisionDto;
     }
 
@@ -67,6 +76,15 @@ public class TelevisionMapper {
         television.setOriginalStock(televisionInputDto.originalStock);
         television.setSold(0);
         television.setReleaseDate(televisionInputDto.releaseDate);
+
+        if (televisionInputDto.ciModuleInputDto != null) {
+            television.setCiModule(CIModuleMapper.toEntity(televisionInputDto.ciModuleInputDto));
+        }
+
+        if (televisionInputDto.remoteControllerInputDto != null) {
+            television.setRemoteController(RemoteControllerMapper.toEntity(televisionInputDto.remoteControllerInputDto));
+        }
+
         return television;
     }
 }

@@ -64,5 +64,23 @@ public class TelevisionController {
         String message = televisionService.deleteTelevision(id);
         return ResponseEntity.ok(message);
     }
+
+    @PutMapping("/{televisionId}/remotecontrollers/{remoteControllerId}")
+    public ResponseEntity<TelevisionDto> assignRemoteControllerToTelevision(@PathVariable long televisionId, @PathVariable long remoteControllerId) {
+        TelevisionDto televisionDto = televisionService.assignRemoteControllerToTelevision(televisionId, remoteControllerId);
+        return ResponseEntity.ok(televisionDto);
+    }
+
+    @PutMapping("/{televisionId}/cimodules/{ciModuleId}")
+    public ResponseEntity<TelevisionDto> assignCIModuleToTelevision(@PathVariable long televisionId, @PathVariable long ciModuleId) {
+        TelevisionDto televisionDto = televisionService.assignRemoteControllerToTelevision(televisionId, ciModuleId);
+        return ResponseEntity.ok(televisionDto);
+    }
+
+    @PutMapping("/{televisionId}/wallbrackets/{wallBracketId}")
+    public ResponseEntity<TelevisionDto> assignWallBracketToTelevision(@PathVariable long televisionId, @PathVariable long wallBracketId) {
+        TelevisionDto televisionDto = televisionService.assignWallBracketToTelevision(televisionId, wallBracketId);
+        return ResponseEntity.ok(televisionDto);
+    }
 }
 

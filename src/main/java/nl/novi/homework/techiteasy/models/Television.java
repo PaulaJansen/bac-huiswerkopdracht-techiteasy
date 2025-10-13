@@ -3,6 +3,7 @@ package nl.novi.homework.techiteasy.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "televisions")
@@ -11,6 +12,23 @@ public class Television {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToOne
+    @JoinColumn(name = "remotecontrollers")
+    RemoteController remoteController;
+
+    @ManyToOne
+    @JoinColumn(name = "cimodule_id")
+    CIModule ciModule;
+
+    @ManyToMany
+    @JoinTable(
+            name = "televisions_wallbrackets",
+            joinColumns  = @JoinColumn(name = "television_id"),
+            inverseJoinColumns = @JoinColumn(name = "wallbracket_id")
+    )
+    List<WallBracket> wallBrackets;
+
     private String type;
     private String brand;
     private String name;
@@ -173,5 +191,29 @@ public class Television {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
+    }
+
+    public CIModule getCiModule() {
+        return ciModule;
+    }
+
+    public void setCiModule(CIModule ciModule) {
+        this.ciModule = ciModule;
+    }
+
+    public List<WallBracket> getWallBrackets() {
+        return wallBrackets;
+    }
+
+    public void setWallBrackets(List<WallBracket> wallBrackets) {
+        this.wallBrackets = wallBrackets;
     }
 }

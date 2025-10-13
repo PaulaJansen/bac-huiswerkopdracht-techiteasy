@@ -2,6 +2,8 @@ package nl.novi.homework.techiteasy.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="cimodules")
 public class CIModule {
@@ -9,6 +11,10 @@ public class CIModule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToMany(mappedBy = "ciModule")
+    List<Television> televisions;
+
     private String name;
     private String type;
     private double price;
@@ -43,5 +49,13 @@ public class CIModule {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<Television> getTelevisions() {
+        return televisions;
+    }
+
+    public void setTelevisions(List<Television> televisions) {
+        this.televisions = televisions;
     }
 }

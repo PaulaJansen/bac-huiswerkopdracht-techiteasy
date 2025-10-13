@@ -2,6 +2,8 @@ package nl.novi.homework.techiteasy.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="wallbrackets")
 public class WallBracket {
@@ -9,6 +11,10 @@ public class WallBracket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToMany(mappedBy = "wallBrackets")
+    List<Television> televisions;
+
     private String size;
     private boolean adjustable;
     private String name;
@@ -52,5 +58,13 @@ public class WallBracket {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<Television> getTelevisions() {
+        return televisions;
+    }
+
+    public void setTelevisions(List<Television> televisions) {
+        this.televisions = televisions;
     }
 }
